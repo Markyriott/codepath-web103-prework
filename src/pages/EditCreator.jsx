@@ -1,11 +1,81 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Card from '../components/Card';
+import { supabase } from "../client";
+import { useParams } from "react-router-dom";
 
 export default function EditCreator(){
+    const { id } = useParams();
+    const [loading, setLoading] = useState(true);
+    const [creatorInfo, setCreatorInfo] = useState({name: '', description: '', url: '', imageURL: ''});
+    const [updating, setUpdating] = useState(false);
+
+    useEffect(()=>{
+        const dataFetch = async () => {
+            try{
+                const { data } = await supabase.from('creators').select('*').eq('id', id).single()
+                setCreatorInfo(data)
+            } catch(err){
+                console.log(`Error fetching data: ${err}`)
+            } finally{
+                setLoading(false)
+            }
+        }
+
+        dataFetch()
+    },[id])
+
+    const handleSubmit = async () =>{
+        setUpdating(true)
+        try{
+            const { data, error } = await supabase.from('creators').update([creatorInfo]).eq('id', id)
+            console.log(data)
+        } catch(error){
+            console.log(`Error adding creator: ${error}`)
+        } finally {
+            setUpdating(false)
+        }
+    }
+
+    const handleChange = (e) =>{
+        setCreatorInfo({
+            ...creatorInfo,
+            [e.target.name]: e.target.value
+        })
+    }
+
+    if (loading){
+        return(
+            <p>Loading...</p>
+        )
+    }
     return (
         <>
-            <p>edit</p>
-            <Card />
+            <p>Edit</p>
+            <form onSubmit={handleSubmit}>
+
+                <input
+                type = "text"
+                id = "name"
+                name = "name"
+                value = {creatorInfo.name}
+                placeholder = "Enter your creator's name"
+                onChange={handleChange}
+                required
+                />
+
+                <textarea
+                type = "text"
+                id = "description"
+                name = "description"
+                value = {creatorInfo.description}
+                placeholder = "Enter your creator's description"
+                onChange={handleChange}
+                required
+                />
+
+                <button type="submit" disabled={updating}> Submit</button>
+            </form>
+
         </>
     )  
 }

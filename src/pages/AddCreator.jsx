@@ -1,16 +1,20 @@
 import React, { useState } from "react";
 import Card from '../components/Card';
 import { supabase } from "../client";
+import { Link } from "react-router-dom";
 
 export default function AddCreator(){
     const [creatorInfo, setCreatorInfo] = useState({ name: '', description: '', url: '', imageURL: '' });
-    const [updating, setUpdating] = useState(false)
+    const [updating, setUpdating] = useState(false);
+    const [added, setAdded] = useState(false);
 
-    const handleSubmit = async () =>{
+    const handleSubmit = async (e) =>{
+        e.preventDefault();
         setUpdating(true)
 
         try{
             const { data, error } = await supabase.from('creators').insert([creatorInfo])
+            setAdded(true);
         } catch(error){
             console.log(`Error adding creator: ${error}`)
         } finally {
@@ -24,9 +28,19 @@ export default function AddCreator(){
             [e.target.name]: e.target.value
         })
     }
-
+    if (added){
+        return(
+            <>
+                <p>Creator Added!</p>
+                <Link to="/">
+                    <button>Return Home</button>
+                </Link>
+            </>
+        )
+    }
     return (
         <>
+            <p>Add Creator!</p>
             <form onSubmit={handleSubmit}>
 
                 <input
@@ -51,7 +65,6 @@ export default function AddCreator(){
 
                 <button type="submit" disabled={updating}> Submit</button>
             </form>
-            <p>Add</p>
         </>
     )  
 }

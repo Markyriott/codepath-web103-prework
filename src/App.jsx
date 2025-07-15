@@ -36,7 +36,7 @@ export default function App(){
 
     if (loading){
         return (
-            <p>Loading</p>
+            <p>Loading...</p>
         )
     }
     return (

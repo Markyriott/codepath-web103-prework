@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Card from '../components/Card';
 import { supabase } from "../client";
-import { useParams } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
 
 export default function EditCreator(){
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
     const [creatorInfo, setCreatorInfo] = useState({name: '', description: '', url: '', imageURL: ''});
     const [updating, setUpdating] = useState(false);
+    const [deleted, setDeleted] = useState(false);
 
     useEffect(()=>{
         const dataFetch = async () => {
@@ -30,12 +31,32 @@ export default function EditCreator(){
             const { data, error } = await supabase.from('creators').update([creatorInfo]).eq('id', id)
             console.log(data)
         } catch(error){
-            console.log(`Error adding creator: ${error}`)
+            console.log(`Error updating creator: ${error}`)
         } finally {
             setUpdating(false)
         }
     }
-
+    const handleDelete = async () =>{
+        setUpdating(true)
+        try{
+            const { data, error } = await supabase.from('creators').delete().eq('id',id)
+            setDeleted(true);
+        } catch(error){
+            console.log(`Error deleting creator: ${error}`)
+        } finally {
+            setUpdating(false);
+        }
+    }
+    if (deleted){
+        return(
+            <>
+                <p>Creator {creatorInfo.name} Deleted</p>
+                <Link to="/">
+                    <button>Return Home</button>
+                </Link>
+            </>
+        )
+    }
     const handleChange = (e) =>{
         setCreatorInfo({
             ...creatorInfo,
@@ -48,6 +69,7 @@ export default function EditCreator(){
             <p>Loading...</p>
         )
     }
+
     return (
         <>
             <p>Edit</p>
@@ -75,7 +97,7 @@ export default function EditCreator(){
 
                 <button type="submit" disabled={updating}> Submit</button>
             </form>
-
+            <button onClick={handleDelete}>Delete Creator</button>
         </>
     )  
 }

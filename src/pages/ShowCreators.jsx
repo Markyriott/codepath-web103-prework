@@ -8,7 +8,9 @@ export default function ShowCreators({ creators }){
         <div>
             <Link to="/add">Add Creator</Link>
             {creators.map((creator) => (
-                <Card key = {creator.id} creatorInfo = {creator}/>
+                <Link to={`/view/${creator.id}`}>
+                    <Card key = {creator.id} creatorInfo = {creator}/>
+                </Link>
             ))}
         </div>
         

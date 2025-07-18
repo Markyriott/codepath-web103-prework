@@ -51,7 +51,7 @@ export default function EditCreator(){
         return(
             <>
                 <p>Creator {creatorInfo.name} Deleted</p>
-                <Link to="/">
+                <Link to="/" reloadDocument>
                     <button>Return Home</button>
                 </Link>
             </>

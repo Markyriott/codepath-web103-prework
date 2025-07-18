@@ -32,7 +32,7 @@ export default function AddCreator(){
         return(
             <>
                 <p>Creator Added!</p>
-                <Link to="/">
+                <Link to="/" reloadDocument>
                     <button>Return Home</button>
                 </Link>
             </>

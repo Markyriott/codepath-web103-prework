@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Card from '../components/Card';
 import { supabase } from "../client";
 import { useParams,Link } from "react-router-dom";
 
@@ -92,6 +91,8 @@ export default function EditCreator(){
                 value = {creatorInfo.description}
                 placeholder = "Enter your creator's description"
                 onChange={handleChange}
+                rows={4}
+                cols={50}
                 required
                 />
 

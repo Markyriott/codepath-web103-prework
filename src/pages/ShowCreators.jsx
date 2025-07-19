@@ -12,7 +12,6 @@ export default function ShowCreators({ creators }){
                     <Card key = {creator.id} creatorInfo = {creator}/>
                 </Link>
             ))}
-        </div>
-        
+        </div> 
     )  
 }

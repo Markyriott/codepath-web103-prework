@@ -1,0 +1,18 @@
+@use "@picocss/pico/scss/pico" with (
+    $semantic-root-element: "#root",
+    $enable-semantic-container: true,
+    $enable-classes: true
+);
+
+#root{
+    > main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100vh;
+    }
+}
+
+textarea{
+    resize:none;
+}

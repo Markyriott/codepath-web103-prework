@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Card from '../components/Card';
 import { supabase } from "../client";
 import { useParams, Link } from "react-router-dom";
 

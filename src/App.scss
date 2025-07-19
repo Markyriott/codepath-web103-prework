@@ -2,7 +2,11 @@
     $semantic-root-element: "#root",
     $enable-semantic-container: true,
     $enable-classes: true
-);
+);  
+
+*{
+    box-sizing: border-box;
+}
 
 #root{
     > main{
@@ -12,7 +16,18 @@
         min-height: 100vh;
     }
 }
+   
+header{
+    display: flex;
+    height: 50px;
+    flex-direction: column;
+    align-items: center;
+}
 
 textarea{
     resize:none;
+}
+
+a{
+    text-decoration: none;
 }

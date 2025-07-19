@@ -1,5 +1,5 @@
 import React, { Children, useEffect,useState } from "react";
-import { useRoutes } from "react-router-dom";
+import { Link, useRoutes } from "react-router-dom";
 import ShowCreators from './pages/ShowCreators';
 import AddCreator from './pages/AddCreator';
 import EditCreator from './pages/EditCreator';
@@ -36,13 +36,26 @@ export default function App(){
 
     if (loading){
         return (
-            <p>Loading...</p>
+            <>
+                <Header/>
+                <p aria-busy='true'>Loading...</p>
+            </>
         )
     }
     return (
-        <>
-            <header>CREATORVERSE</header>
-            {element}
-        </>
+        <div>
+            <Header/>
+            <main>
+                {element}
+            </main>
+        </div>
+    )
+}
+
+const Header = ()=>{
+    return(
+        <header>
+            <Link to="/"><h2>CREATORVERSE</h2></Link>
+        </header>
     )
 }

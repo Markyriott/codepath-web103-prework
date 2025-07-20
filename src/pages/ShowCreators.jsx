@@ -6,10 +6,10 @@ export default function ShowCreators({ creators }){
 
     return (
         <div className="container">
-            <Link to="/add">Add a Creator</Link>
+        <Link to="/add" role='button'>+ Add a creator</Link>
             <div className="grid">
                 {creators.map((creator) => (
-                    <Link to={`/view/${creator.id}`}>
+                    <Link className="secondary" to={`/view/${creator.id}`}>
                         <Card key={creator.id} creatorInfo = {creator}/>
                     </Link>
                 ))}

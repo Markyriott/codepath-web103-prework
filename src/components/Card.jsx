@@ -6,13 +6,13 @@ export default function Card({ creatorInfo}){
 
     return(
         <article>
-            <img height={'100'} width={'500'} src={imageURL}/>
+            {imageURL && <img height='200px' width='500px' src={imageURL}/>}
             <hgroup>
-                <h4>{name}</h4>
-                <p>{description}</p>
+                <h3>{name}</h3>
+                <small>{description}</small>
             </hgroup>
             <Link to={`/edit/${creatorInfo.id}`}>
-                <button>Edit Creator</button>
+                <button className="secondary">Edit Creator Info</button>
             </Link>
         </article>
     )

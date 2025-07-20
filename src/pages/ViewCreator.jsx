@@ -25,17 +25,22 @@ export default function ViewCreator(){
 
     if (loading){
         return(
-            <p>Loading...</p>
+            <p aria-busy='true'>Loading...</p>
         )
     }
 
     return (
-        <>
-            <p>View</p>
-            <p>{creator.name}</p>
-            <Link to={`/edit/${creator.id}`}>
-                <button>Edit Creator</button>
-            </Link>
-        </>
+        <div className="container">
+            <hgroup>
+                <h2>{creator.name}</h2>
+                {creator.imageURL && <img src={creator.imageURL}></img>}
+                {creator.url && <a href={creator.url} target="_blank">Visit {creator.name}'s Channel</a>}
+                <label>
+                    Description
+                    <h5>&emsp;{creator.description}</h5>
+                </label>
+            </hgroup>
+            <Link role="button" to={`/edit/${creator.id}`}>Edit Creator's Info</Link>
+        </div>
     )  
 }

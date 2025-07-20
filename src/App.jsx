@@ -42,17 +42,19 @@ export default function App(){
             </>
         )
     }
+
     return (
-        <div>
+        <>
             <Header/>
-            <main>
+            <div>
                 {element}
-            </main>
-        </div>
+            </div>
+        </>
     )
 }
 
 const Header = ()=>{
+
     return(
         <header>
             <Link to="/"><h2>CREATORVERSE</h2></Link>

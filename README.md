@@ -35,10 +35,10 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented required features:
 
-👉🏿<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+👉🏿<img src='./Creatorverse.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 <!-- Replace this with whatever GIF tool you used! -->
-GIF created with ...  👉🏿 GIF tool here
+GIF created with ...  👉🏿LICEcap
 <!-- Recommended tools:
 [Kap](https://getkap.co/) for macOS
 [ScreenToGif](https://www.screentogif.com/) for Windows
@@ -48,7 +48,7 @@ GIF created with ...  👉🏿 GIF tool here
 
 Describe any challenges encountered while building the app or any additional context you'd like to add.
 - One challenge that took me a while to figure out was using Picocss. I hadn't used a css framework like this before so there was a learning curve when styling the website. 
-- It was also my first time using Supabase but it wasn't hard to figure out.
+- It was also my first time using Supabase but it wasn't difficult  to figure out.
 
 ## License
 
